@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менеджер паролей</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192x192.png">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="logo">
+                <h1>Менеджер паролей</h1>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>📁 Сохраненные пароли</h2>
+            </div>
+            <div class="password-list" id="passwords-container">
+                <div class="empty-state">
+                    <div>🔐</div>
+                    <h3>Пароли не найдены</h3>
+                    <p>Добавьте первый пароль чтобы начать</p>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="add-password-card">
+                <div class="card-header">
+                    <h2>Добавить новый пароль</h2>
+                </div>
+                <form id="add-password-form">
+                    <div class="form-group">
+                        <label class="form-label" for="service-name">Сервис/URL</label>
+                        <input type="text" class="form-input" id="service-name" required placeholder="yandex.ru">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="login">Логин/Email</label>
+                        <input type="text" class="form-input" id="login" required placeholder="your.email@mail.ru">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="password">Пароль</label>
+                        <div class="password-input-container">
+                            <input type="password" class="form-input" id="password" required placeholder="Введите пароль">
+                            <button type="button" class="toggle-password" id="toggle-password">👁️</button>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-lg">Сохранить пароль</button>
+                        <button type="button" class="btn btn-outline" id="use-generated">Сгенерировать пароль</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <button class="btn btn-primary password-generator-toggle" id="generator-toggle">Генератор паролей</button>
+        <div class="mobile-buttons">
+            <button class="mobile-btn mobile-btn-passwords" id="mobile-passwords-btn">📁</button>
+            <button class="mobile-btn mobile-btn-generator" id="mobile-generator-btn">🎲</button>
+        </div>
+        <div class="mobile-sidebar" id="mobile-sidebar">
+            <div class="mobile-sidebar-header">
+                <h2>📁 Сохраненные пароли</h2>
+                <button class="close-sidebar" id="close-sidebar">X</button>
+            </div>
+            <div class="password-list" id="mobile-passwords-container">
+                <div class="empty-state">
+                    <div>🔐</div>
+                    <h3>Пароли не найдены</h3>
+                    <p>Добавьте первый пароль чтобы начать</p>
+                </div>
+            </div>
+        </div>
+        <div class="password-generator" id="password-generator">
+            <div class="generator-header">
+                <h2>🎲 Генератор паролей</h2>
+                <button class="close-generator" id="close-generator">×</button>
+            </div>
+            <div class="generator-controls">
+                <div class="control-group">
+                    <label class="form-label">Длина пароля</label>
+                    <input type="range" class="form-input" id="password-length" min="6" max="36" value="12">
+                    <div style="text-align: center; color: var(--text-light);">
+                        <span id="length-value">12</span> символов
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="form-label">Настройки символов</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="uppercase" checked>
+                        <label for="uppercase">Заглавные буквы (A-Z)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="lowercase" checked>
+                        <label for="lowercase">Строчные буквы (a-z)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="numbers" checked>
+                        <label for="numbers">Цифры (0-9)</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="symbols">
+                        <label for="symbols">Символы (!@#$%^&*)</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="generate-password"> Сгенерировать пароль</button>
+                <div class="generator-result">
+                    <input type="text" id="generated-password" readonly>
+                    <button class="btn btn-outline" id="copy-password">📋</button>
+                    <div class="copy-notification" id="copy-notification">Скопировано!</div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" id="overlay"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
